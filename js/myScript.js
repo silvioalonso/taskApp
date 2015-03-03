@@ -1,49 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>taskApp</title>
-
-<style>
-
-form{
-	font-style: italic;
-}
-
-#result{
-	font-family: arial;
-}
-
-li{
-
-/*background-color: RED;	
-color:BLUE;*/
-
-}
-
-</style>
-
-</head>
-
-<body onload="carregaLista()">
-	<form action="demo_form.asp">
-	  Data: <input id="txtData" type="text" name="data"><br>
-	  Tarefa: <input id="txtTarefa" type="text" name="tarefa"><br>
-	  Inicio: <input id="txtInicio" type="text" name="inicio"><br>
-	  Fim: <input id="txtFim" type="text" name="fim"><br>
-	</form>
-
-	<br>
-	<button id="btn1" onclick="myFunction()">Click me</button>
-	<br>
-
-	<div id="result"></div>
-
-</body>
- 
-	<!--<script src="myScript.js"></script>-->
-
-<script type="text/javascript">
-
 var arr = [];
 var Lista = {
 	data: "",
@@ -66,8 +20,6 @@ function atualizaArray(){
 function carregaLista(){
 
 	atualizaArray();
-
-	//document.getElementById("btn1").onclick = function() {myFunction()};
 
 }
 
@@ -95,7 +47,6 @@ function myFunction() {
 
     for (i in arr){
     	resultado = resultado + "<li>" + arr[i].data + " - " + arr[i].tarefa + " - " + arr[i].inicio + " - " + arr[i].fim + "</li>";
-    //	document.getElementById("result"). = arr[i].data;
     }
 		resultado = resultado + "</ol>";
 
@@ -103,7 +54,3 @@ function myFunction() {
 
 	limpaCampos();
 }
-
-</script>
-
-</html>
