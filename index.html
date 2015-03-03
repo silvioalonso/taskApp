@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+
+<style>
+
+form{
+	font-style: italic;
+}
+
+#result{
+	font-family: arial;
+}
+
+li{
+
+/*background-color: RED;	
+color:BLUE;*/
+
+}
+
+</style>
+
+</head>
+
+<body onload="carregaLista()">
+	<form action="demo_form.asp">
+	  Data: <input id="txtData" type="text" name="data"><br>
+	  Tarefa: <input id="txtTarefa" type="text" name="tarefa"><br>
+	  Inicio: <input id="txtInicio" type="text" name="inicio"><br>
+	  Fim: <input id="txtFim" type="text" name="fim"><br>
+	</form>
+
+	<br>
+	<button id="btn1" onclick="myFunction()">Click me</button>
+	<br>
+
+	<div id="result"></div>
+
+</body>
+ 
+	<!--<script src="myScript.js"></script>-->
+
+<script type="text/javascript">
+
+var arr = [];
+var Lista = {
+	data: "",
+	tarefa:"",
+	inicio: "",
+	fim: ""
+}
+
+function atualizaArray(){
+
+	if (localStorage.getItem("lista") !== null){
+		var tarefas = localStorage.getItem("lista");
+		console.log(tarefas);
+		console.log(eval("["+tarefas+"]"));
+		arr = eval(tarefas);
+	}
+
+}
+
+function carregaLista(){
+
+	atualizaArray();
+
+	//document.getElementById("btn1").onclick = function() {myFunction()};
+
+}
+
+function limpaCampos(){
+	var inputs = document.getElementsByTagName('input');
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = '';
+    }
+}
+
+function myFunction() {
+
+	atualizaArray();
+
+	Lista.data = document.getElementById("txtData").value;
+	Lista.tarefa = document.getElementById("txtTarefa").value;
+	Lista.inicio = document.getElementById("txtInicio").value;
+	Lista.fim = document.getElementById("txtFim").value;
+
+    arr.push(Lista);
+
+    localStorage.setItem("lista", JSON.stringify(arr));
+
+    var resultado = "<ol>";
+
+    for (i in arr){
+    	resultado = resultado + "<li>" + arr[i].data + " - " + arr[i].tarefa + " - " + arr[i].inicio + " - " + arr[i].fim + "</li>";
+    //	document.getElementById("result"). = arr[i].data;
+    }
+		resultado = resultado + "</ol>";
+
+	document.getElementById("result").innerHTML = resultado;
+
+	limpaCampos();
+}
+
+</script>
+
+</html>
